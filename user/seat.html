@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Seat Selection</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f0f0f0;
+            margin: 0;
+        }
+        .seat-container {
+            display: grid;
+            grid-template-columns: repeat(5, 60px);
+            gap: 10px;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        .seat {
+            width: 60px;
+            height: 60px;
+            background-color: #ddd;
+            border-radius: 10px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+        }
+        .seat.selected {
+            background-color: #6c757d;
+            color: #fff;
+        }
+        .screen {
+            grid-column: span 5;
+            text-align: center;
+            margin-top: 20px;
+            margin-bottom: 10px;
+        }
+        .controls {
+            grid-column: span 5;
+            text-align: center;
+            margin-top: 20px;
+        }
+        .controls button {
+            padding: 10px 20px;
+            margin: 0 10px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .controls button:hover {
+            background-color: #ddd;
+        }
+    </style>
+</head>
+<body>
+
+<div class="seat-container">
+    <div class="seat" data-seat="E1">E1</div>
+    <div class="seat" data-seat="E2">E2</div>
+    <div class="seat" data-seat="E3">E3</div>
+    <div class="seat" data-seat="E4">E4</div>
+    <div class="seat" data-seat="E5">E5</div>
+    <div class="seat" data-seat="D1">D1</div>
+    <div class="seat" data-seat="D2">D2</div>
+    <div class="seat" data-seat="D3">D3</div>
+    <div class="seat" data-seat="D4">D4</div>
+    <div class="seat" data-seat="D5">D5</div>
+    <div class="seat" data-seat="C1">C1</div>
+    <div class="seat" data-seat="C2">C2</div>
+    <div class="seat" data-seat="C3">C3</div>
+    <div class="seat" data-seat="C4">C4</div>
+    <div class="seat" data-seat="C5">C5</div>
+    <div class="seat" data-seat="B1">B1</div>
+    <div class="seat" data-seat="B2">B2</div>
+    <div class="seat" data-seat="B3">B3</div>
+    <div class="seat" data-seat="B4">B4</div>
+    <div class="seat" data-seat="B5">B5</div>
+    <div class="seat" data-seat="A1">A1</div>
+    <div class="seat" data-seat="A2">A2</div>
+    <div class="seat" data-seat="A3">A3</div>
+    <div class="seat" data-seat="A4">A4</div>
+    <div class="seat" data-seat="A5">A5</div>
+    <div class="screen">Screen</div>
+    <div class="controls">
+        <button id="selectBtn">Select Seat(s)</button>
+        <button id="cancelBtn">Cancel</button>
+    </div>
+</div>
+
+<script>
+    const seats = document.querySelectorAll('.seat');
+    const selectBtn = document.getElementById('selectBtn');
+    const cancelBtn = document.getElementById('cancelBtn');
+
+    seats.forEach(seat => {
+        seat.addEventListener('click', () => {
+            seat.classList.toggle('selected');
+        });
+    });
+
+    selectBtn.addEventListener('click', () => {
+        const selectedSeats = document.querySelectorAll('.seat.selected');
+        alert(`Selected Seats: ${Array.from(selectedSeats).map(seat => seat.dataset.seat).join(', ')}`);
+    });
+
+    cancelBtn.addEventListener('click', () => {
+        seats.forEach(seat => seat.classList.remove('selected'));
+    });
+</script>
+
+</body>
+</html>
