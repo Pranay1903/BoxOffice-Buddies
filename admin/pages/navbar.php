@@ -3,7 +3,7 @@
     <div class="navbar-left">
         <ul class="navbar-nav">
             <li class="nav-item">
-                <h1>Stationary management system</h1>
+                <h1>Movie Management System</h1>
             </li>
         </ul>
     </div>
