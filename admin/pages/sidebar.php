@@ -9,30 +9,27 @@
 
   <!-- Sidebar -->
   <div class="sidebar">
-
+    <!-- Sidebar Menu -->
     <nav class="mt-2">
       <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
-
+        
+        <!-- Movies Section -->
         <li class="nav-header">Movies</li>
         <li class="nav-item has-treeview menu-open">
-          <a href="#" class="nav-link primary">
+          <a href="#" class="nav-link">
             <i class="fas fa-film"></i>
             <p>
               Manage Movies
               <i class="right fas fa-angle-left"></i>
             </p>
           </a>
-
           <ul class="nav nav-treeview">
-
             <li class="nav-item">
               <a href="add_movie.php" class="nav-link">
                 <i class="fas fa-plus-circle"></i>
                 <p>Add Movies</p>
               </a>
             </li>
-
-
             <li class="nav-item">
               <a href="view_movie.php" class="nav-link">
                 <i class="fas fa-eye"></i>
@@ -40,65 +37,60 @@
               </a>
             </li>
           </ul>
+        </li>
 
-        <li class="nav-header">Screen</li>
+        <!-- Screen Section -->
+        <li class="nav-header">Screens</li>
         <li class="nav-item has-treeview menu-open">
-          <a href="#" class="nav-link primary">
+          <a href="#" class="nav-link">
             <i class="fas fa-desktop"></i>
             <p>
-              Manage screen
+              Manage Screens
               <i class="right fas fa-angle-left"></i>
             </p>
           </a>
-
           <ul class="nav nav-treeview">
-
             <li class="nav-item">
               <a href="add_screen.php" class="nav-link">
-              <i class="fas fa-plus-square"></i>
-                <p>Add screen</p>
+                <i class="fas fa-plus-square"></i>
+                <p>Add Screen</p>
               </a>
             </li>
-
             <li class="nav-item">
               <a href="view_screen.php" class="nav-link">
-              <i class="fas fa-tv"></i>
-                <p>View screen</p>
+                <i class="fas fa-tv"></i>
+                <p>View Screens</p>
               </a>
             </li>
           </ul>
+        </li>
 
-        <li class="nav-header">Screening</li>
+        <!-- Screening Section -->
+        <li class="nav-header">Screenings</li>
         <li class="nav-item has-treeview menu-open">
-          <a href="#" class="nav-link primary">
+          <a href="#" class="nav-link">
             <i class="fas fa-calendar-alt"></i>
             <p>
-              Manage showdetails
+              Manage Show Details
               <i class="right fas fa-angle-left"></i>
             </p>
           </a>
-
           <ul class="nav nav-treeview">
-
             <li class="nav-item">
               <a href="add_showdetails.php" class="nav-link">
                 <i class="fas fa-plus-circle"></i>
-                <p>Add showdetails</p>
+                <p>Add Show Details</p>
               </a>
             </li>
-
             <li class="nav-item">
               <a href="view_showdetails.php" class="nav-link">
-              <i class="fas fa-eye"></i>
-                <p>View showdetails</p>
+                <i class="fas fa-eye"></i>
+                <p>View Show Details</p>
               </a>
             </li>
           </ul>
-
-
         </li>
-
-
+        
       </ul>
     </nav>
     <!-- /.sidebar-menu -->
