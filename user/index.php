@@ -61,7 +61,7 @@ include("header.php");
                 ?>
                 <div class="col-lg-3 mt-5">
                     <div class="card h-100 d-flex flex-column">
-                        <img src="admin/image/<?php echo $fetch_product['photo']?>" class="card-img-top" alt="...">
+                        <img src="image/<?php echo $fetch_product['photo']?>" class="card-img-top" alt="...">
                         <div class="card-body">
                             <h5 class="card-title"><b><?php echo $fetch_product['moviename'];?></b></h5>
                             <p class="card-text"><?php echo $fetch_product['description'];?></p>
