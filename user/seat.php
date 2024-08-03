@@ -26,21 +26,20 @@ if (isset($_SESSION['uname'])) {
     <title>Movie Seat Selection</title>
     <link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@300;400;700&display=swap" rel="stylesheet">
     <style>
-       
-       html, body {
-        height: 100%;
-        font-family: 'Nunito Sans', sans-serif;
+        html, body {
+            height: 100%;
+            font-family: 'Nunito Sans', sans-serif;
             background-color: #f0f0f0;
             margin: 0;
             padding: 0;
         }
         .heading {
-          padding-top: 20px;
-      }
-      .container-custom {
-          padding-left: 18px;
-          padding-right: 18px;
-      }
+            padding-top: 20px;
+        }
+        .container-custom {
+            padding-left: 18px;
+            padding-right: 18px;
+        }
         .container {
             display: flex;
             flex-direction: row;
@@ -180,12 +179,13 @@ if (isset($_SESSION['uname'])) {
                 <p>Selected Seat: <span id="selected-seat">None</span></p>
                 <p>Total Price: $<span id="total-price">0</span></p>
             </div>
-            <form method="post" action="buyticket.php" onsubmit="return check();">
-                <button type="submit" id="select-seat-btn">Select Seat(s)</button>
-                <button type="button" id="cancel-btn">Cancel</button>
+            <form id="seat-form" method="post" action="buyticket.php">
                 <input type="hidden" name="show_id" value="<?php echo htmlspecialchars($_SESSION['show_id']); ?>">
                 <input type="hidden" name="movie_id" value="<?php echo htmlspecialchars($_SESSION['movie_id']); ?>">
                 <input type="hidden" name="screen_id" value="<?php echo htmlspecialchars($_SESSION['screen_id']); ?>">
+                <input type="hidden" id="selected-seats" name="seat" value="">
+                <button type="submit" id="select-seat-btn">Select Seat(s)</button>
+                <button type="button" id="cancel-btn">Cancel</button>
             </form>
         </div>
     </div>
@@ -196,6 +196,7 @@ if (isset($_SESSION['uname'])) {
         const totalPriceEl = document.getElementById('total-price');
         const selectSeatBtn = document.getElementById('select-seat-btn');
         const cancelBtn = document.getElementById('cancel-btn');
+        const selectedSeatsInput = document.getElementById('selected-seats');
 
         let selectedSeats = [];
 
@@ -209,13 +210,27 @@ if (isset($_SESSION['uname'])) {
         });
 
         function updateSelectedSeats() {
-            selectedSeats = [...document.querySelectorAll('.seat.selected')].map(seat => seat.innerText);
-            selectedSeatEl.innerText = selectedSeats.join(', ') || 'None';
+            selectedSeats = [...document.querySelectorAll('.seat.selected')].map(seat => {
+                return `${seat.dataset.row}|${seat.dataset.col}`;
+            });
+            selectedSeatEl.innerText = selectedSeats.map(seat => {
+                const [row, col] = seat.split('|');
+                return String.fromCharCode(65 + parseInt(row) - 1) + col;
+            }).join(', ') || 'None';
             totalPriceEl.innerText = selectedSeats.length * 10; // Assuming each seat costs $10
+            selectedSeatsInput.value = selectedSeats.join(','); // Update hidden input
         }
 
-        selectSeatBtn.addEventListener('click', () => {
-            alert(`Selected Seats: ${selectedSeats.join(', ')}\nTotal Price: $${selectedSeats.length * 10}`);
+        selectSeatBtn.addEventListener('click', (event) => {
+            if (selectedSeats.length === 0) {
+                alert('Please select at least one seat.');
+                event.preventDefault(); // Prevent form submission if no seats selected
+            } else {
+                alert(`Selected Seats: ${selectedSeats.map(seat => {
+                    const [row, col] = seat.split('|');
+                    return String.fromCharCode(65 + parseInt(row) - 1) + col;
+                }).join(', ')}\nTotal Price: $${selectedSeats.length * 10}`);
+            }
         });
 
         cancelBtn.addEventListener('click', () => {
